@@ -1,0 +1,6 @@
+{
+  "uhc-portal": {
+    "url": "https://github.com/platex-rehor-bot/uhc-portal.git",
+    "upstream": "https://github.com/RedHatInsights/uhc-portal.git"
+  }
+}
