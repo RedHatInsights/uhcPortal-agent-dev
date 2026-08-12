@@ -1,0 +1,8 @@
+workflow: jira-sprint
+source: jira
+envs:
+  - browser
+  - node
+  - patternfly-mcp
+claude_md:
+  strategy: append
