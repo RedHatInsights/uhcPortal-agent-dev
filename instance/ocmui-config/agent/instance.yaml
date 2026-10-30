@@ -1,8 +1,11 @@
 workflow: jira-sprint
 source: jira
+# OpenCode V2/OpenAI profile. Removing these selectors restores Python/Claude
+# runtime defaults; native subagents and MCP settings apply only to OpenCode.
+runtime: opencode
+provider: rehor-openai
+model: gpt-6-luna
 envs:
   - browser
   - node
   - patternfly-mcp
-claude_md:
-  strategy: append

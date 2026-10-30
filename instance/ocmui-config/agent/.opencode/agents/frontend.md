@@ -1,3 +1,15 @@
+---
+description: Implements frontend changes in React/TypeScript/PatternFly applications.
+mode: subagent
+model: rehor-openai/gpt-6-luna
+request:
+  body:
+    reasoning:
+      effort: high
+permissions:
+  - { action: subagent, resource: "*", effect: deny }
+---
+
 Frontend persona for React/PatternFly applications.
 
 ## Stack
