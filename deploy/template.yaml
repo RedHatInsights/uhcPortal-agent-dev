@@ -27,6 +27,18 @@ parameters:
   value: devbot-ocmui
 - name: BOT_CONFIG_PATH
   value: ""
+- name: BOT_EXECUTION_ENGINE
+  value: python
+- name: REHOR_OPENCODE_DEPLOYMENT_CONFIG
+  value: ""
+- name: REHOR_OPENCODE_MAX_TOOL_CALLS
+  value: ""
+- name: REHOR_MODEL_PROXY_URL
+  value: ""
+- name: REHOR_MODEL_PROXY_TOKEN
+  value: ""
+- name: REHOR_WORKSPACE_OWNER_UID
+  value: "1000"
 - name: GCP_PROJECT_ID
   required: true
 - name: GCP_REGION
@@ -142,6 +154,22 @@ objects:
             value: ${BOT_CONFIG_REPO}
           - name: BOT_CONFIG_PATH
             value: ${BOT_CONFIG_PATH}
+          # OpenCode V2 (coordinator engine) — model gateway + deployment config
+          - name: BOT_EXECUTION_ENGINE
+            value: ${BOT_EXECUTION_ENGINE}
+          - name: REHOR_OPENCODE_DEPLOYMENT_CONFIG
+            value: ${REHOR_OPENCODE_DEPLOYMENT_CONFIG}
+          - name: REHOR_OPENCODE_MAX_TOOL_CALLS
+            value: ${REHOR_OPENCODE_MAX_TOOL_CALLS}
+          - name: REHOR_MODEL_PROXY_URL
+            value: ${REHOR_MODEL_PROXY_URL}
+          # Non-secret client placeholder; proxy injects the upstream API key.
+          - name: REHOR_MODEL_PROXY_TOKEN
+            value: ${REHOR_MODEL_PROXY_TOKEN}
+          - name: REHOR_WORKSPACE_OWNER_UID
+            value: ${REHOR_WORKSPACE_OWNER_UID}
+          - name: CYCLE_RUNS_API_URL
+            value: http://devbot-memory-server:8080/api/cycle-runs
           - name: BOT_DASHBOARD_URL
             value: http://devbot-memory-server:8080/api/bot-status
           - name: COSTS_API_URL
@@ -206,6 +234,9 @@ objects:
       - port: 8444
         protocol: TCP
       - port: 8446
+        protocol: TCP
+      # OpenAI-compatible model gateway (coordinator/OpenCode runners)
+      - port: 8450
         protocol: TCP
     - to:
       - podSelector:
